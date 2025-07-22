@@ -1,0 +1,24 @@
+services:
+  parser:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: parser
+    restart: always
+    environment:
+      - DRIVER_HEADLESS=True
+    env_file:
+      - .env
+    volumes:
+      - ./src/:/usr/parser/src
+      - ./data/:/usr/parser/data
+    ports:
+      - "8080:8080"
+    working_dir: /usr/parser/
+    command: python -m src
+    networks:
+      - parser-network
+
+networks:
+  parser-network:
+    driver: bridge

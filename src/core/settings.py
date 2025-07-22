@@ -1,5 +1,12 @@
+import os
 from pathlib import Path
 from typing import Any, Optional
+
+from dotenv import load_dotenv
+
+
+def str_to_bool(val: str) -> bool:
+    return str(val).lower() in ("1", "true", "yes", "on")
 
 
 class BaseSettings:
@@ -13,14 +20,18 @@ class BaseSettings:
 
 
 class ChromeSettings(BaseSettings):
-    headless: bool = False
+    def __init__(self) -> None:
+        self.headless: bool = str_to_bool(os.environ.get("DRIVER_HEADLESS", "False"))
+
     version_main: Optional[str] = None
     use_subprocess: bool = False
     driver_executable_path: Optional[str] = None
 
 
 class FirefoxSettings(BaseSettings):
-    headless: bool = False
+    def __init__(self) -> None:
+        self.headless: bool = str_to_bool(os.environ.get("DRIVER_HEADLESS", "False"))
+
     binary_location: Optional[str] = None
     driver_executable_path: Optional[str] = None
 
@@ -69,6 +80,7 @@ def load_settings(
     chrome_settings: Optional[ChromeSettings] = None,
     firefox_settings: Optional[FirefoxSettings] = None,
 ) -> Settings:
+    load_dotenv()
     return Settings(
         base_dir or load_base_dir(),
         root_dir or load_root_dir(),
