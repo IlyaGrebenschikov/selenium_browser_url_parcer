@@ -1,10 +1,10 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
-from common.browser_controllers import BrowserControllerInterface
+from src.common.browser_controllers import BrowserControllerInterface
 
 
-class GoogleSearchPage:
+class GoogleSearchParser:
     SEARCH_BOX = (By.NAME, "q")
     SEARCH_RESULTS = (By.ID, "search")
     NEXT_BUTTON = (By.ID, "pnnext")
