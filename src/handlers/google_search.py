@@ -4,7 +4,7 @@ from src.parsers import GoogleSearchParser
 
 class GoogleSearchHandler:
     def __init__(
-        self, controller: BrowserControllerInterface, timeout: int = 60
+        self, controller: BrowserControllerInterface, timeout: int = 30
     ) -> None:
         self._controller = controller
         self._timeout = timeout
