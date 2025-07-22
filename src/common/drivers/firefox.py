@@ -12,7 +12,7 @@ class FirefoxDriver(DriverInterface):
         super().__init__(settings)
 
     def setup_options(
-        self, user_agents: Optional[tuple[str]], **kwargs: Any
+        self, user_agents: Optional[tuple[str]] = None, **kwargs: Any
     ) -> FirefoxOptions:
         options = FirefoxOptions(**kwargs)
 
@@ -29,8 +29,11 @@ class FirefoxDriver(DriverInterface):
 
         return options
 
-    def init_driver_firefox(
-        options: FirefoxOptions, extentions: tuple[tuple[str, bool]], **kwargs: Any
+    def init_driver(
+        self,
+        options: FirefoxOptions,
+        extentions: tuple[tuple[str, bool]],
+        **kwargs: Any,
     ) -> Firefox:
         driver = Firefox(options=options, **kwargs)
 
