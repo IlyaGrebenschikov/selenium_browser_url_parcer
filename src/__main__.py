@@ -8,10 +8,21 @@ from .utils.csv_utils import read_csv_requests
 
 def main() -> None:
     settings = load_settings()
-    driver = setup_driver(FirefoxDriver(settings.firefox))
+    user_agents = (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0",
+    )
+    extentions = (
+        (
+            settings.base_dir / "utils" / "browser" / "extentions" / "noptcha.xpi",
+            True,
+        ),
+    )
+    driver = setup_driver(FirefoxDriver(settings.firefox), user_agents, extentions)
 
     with FirefoxController(driver) as controller:
-        handler = GoogleSearchHandler(controller)
+        handler = GoogleSearchHandler(controller, 60)
         service = GoogleSearchService(handler, settings.root_dir)
 
         try:
