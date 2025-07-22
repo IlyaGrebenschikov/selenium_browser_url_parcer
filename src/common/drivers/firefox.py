@@ -9,7 +9,7 @@ from src.core.settings import FirefoxSettings
 
 class FirefoxDriver(DriverInterface):
     def __init__(self, settings: FirefoxSettings) -> None:
-        super().__init__(settings)
+        self._settings = settings
 
     def setup_options(
         self, user_agents: Optional[tuple[str]] = None, **kwargs: Any
@@ -32,12 +32,13 @@ class FirefoxDriver(DriverInterface):
     def init_driver(
         self,
         options: FirefoxOptions,
-        extentions: tuple[tuple[str, bool]],
+        extentions: Optional[tuple[tuple[str, bool]]] = None,
         **kwargs: Any,
     ) -> Firefox:
         driver = Firefox(options=options, **kwargs)
 
-        for extention in extentions:
-            driver.install_addon(*extention)
+        if extentions:
+            for extention in extentions:
+                driver.install_addon(*extention)
 
         return driver

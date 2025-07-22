@@ -1,12 +1,14 @@
-from src.common.drivers import DriverInterface
+from src.common.browser_controllers import BrowserControllerInterface
 from src.parsers import GoogleSearchParser
 
 
 class GoogleSearchHandler:
-    def __init__(self, driver: DriverInterface, timeout: int = 60) -> None:
-        self._driver = driver
+    def __init__(
+        self, controller: BrowserControllerInterface, timeout: int = 60
+    ) -> None:
+        self._controller = controller
         self._timeout = timeout
-        self._parser = GoogleSearchParser(driver)
+        self._parser = GoogleSearchParser(self._controller)
 
     def search_and_collect_links(self, query: str, pages: int = 1) -> set[str]:
         self._parser.open()

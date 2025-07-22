@@ -20,7 +20,7 @@ class ChromeSettings(BaseSettings):
 
 
 class FirefoxSettings(BaseSettings):
-    headless: bool = True
+    headless: bool = False
     binary_location: Optional[str] = None
     driver_executable_path: Optional[str] = None
 
