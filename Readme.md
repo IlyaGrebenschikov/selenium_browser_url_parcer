@@ -18,7 +18,7 @@ This project is a Google search URL parser built with **Selenium** and **Python 
 ### Option 1: Docker Compose (Recommended)
 1. Clone the repository:
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/IlyaGrebenschikov/selenium_browser_url_parcer
    cd selenium_browser_url_parcer
    ```
 2. Start the project using Docker Compose:
@@ -33,14 +33,12 @@ This will build and run the application in a containerized environment with all 
 ### Option 2: Manual Setup
 1. Clone the repository:
    ```bash
-   git clone <repo-url>
+   git clone<https://github.com/IlyaGrebenschikov/selenium_browser_url_parcer
    cd selenium_browser_url_parcer
    ```
 2. Install dependencies (using poetry or pip):
    ```bash
    poetry install
-   # or
-   pip install -r requirements.txt
    ```
 3. Place the `noptcha.xpi` extension in `src/utils/browser/extentions/`.
 4. Create a `.env` file in the project root (optional, for settings like `DRIVER_HEADLESS`).
