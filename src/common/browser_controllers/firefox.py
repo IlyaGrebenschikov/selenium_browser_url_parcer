@@ -5,7 +5,7 @@ from .base import BrowserControllerInterface
 
 class FirefoxController(BrowserControllerInterface):
     def __init__(self, driver: Firefox):
-        self._driver = driver
+        super().__init__(driver)
 
     def get(self, url: str) -> None:
         self._driver.get(url)
